@@ -48,12 +48,11 @@
 
   services = {
 
-    xserver = {
+    services.xserver = {
       enable = true;
       desktopManager.gnome.enable = true;
       displayManager.gdm.enable = true;
-      videoDrivers = [ "nvidia" ];
-            
+      videoDrivers = [ "nvidia" "intel" ];
     };
 
     #sound
@@ -90,7 +89,7 @@
   #bootloader
   boot = {
     kernelPackages = pkgs.linuxPackages_6_9; #most update kernel   
-    kernelParams = [  "amdgpu.dcdebugmask=0x10" ];
+    kernelParams = [];
     loader = {
       systemd-boot.enable = false;
       grub = {
@@ -115,12 +114,18 @@
     graphics = {
       enable = true;
       enable32Bit = true;
+    };
 
+    opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
       extraPackages = with pkgs; [
-        rocm-opencl-icd
-        rocm-opencl-runtime
+        intel-media-driver
+        vaapiIntel
+        vaapiVdpau
+        libvdpau-va-gl
       ];
-
     };
 
     nvidia = {
@@ -138,8 +143,7 @@
           enable = true;
           enableOffloadCmd = true;
         };
-
-        amdgpuBusId = "PCI:69:0:0";
+        intelBusId = "PCI:0:2:0";
         nvidiaBusId = "PCI:1:0:0";
       };
     };

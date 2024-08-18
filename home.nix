@@ -8,8 +8,8 @@ with lib.hm.wt;
   programs.home-manager.enable = true;
 
 
-  home.username = "samuel";
-  home.homeDirectory = "/home/samuel";
+  home.username = "lulvz";
+  home.homeDirectory = "/home/lulvz";
   home.stateVersion = "23.05";
 
 
@@ -17,8 +17,8 @@ with lib.hm.wt;
   # basic configuration of git, please change to your own
   programs.git = {
     enable = true;
-    userName = "samuel";
-    userEmail = "samworlds1231337@gmail.com";
+    userName = "lulvz";
+    userEmail = "kekwm8@gmail.com";
     extraConfig = {
       safe = {
         directory = "/etc/nixos";
